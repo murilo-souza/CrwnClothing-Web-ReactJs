@@ -9,12 +9,8 @@ export function Header() {
         <img src={CrwnLogo} alt="" className="logo" />
       </Link>
       <div className="nav-links-container">
-        <Link className="nav-link" to="/shop">
-          SHOP
-        </Link>
-        <Link className="nav-link" to="/sign-in">
-          SIGN IN
-        </Link>
+        <Link to="/shop">SHOP</Link>
+        <Link to="/sign-in">SIGN IN</Link>
       </div>
     </header>
   )
