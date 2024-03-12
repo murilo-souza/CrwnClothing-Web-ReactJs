@@ -1,22 +1,27 @@
-import './category-item.styles.scss'
+import './styles.scss'
 
-interface CategoryItemProps {
+export interface CategoryItemProps {
+  id: number
   title: string
   imageUrl: string
 }
 
-export function CategoryItem({ title, imageUrl }: CategoryItemProps) {
+interface CategoryItemPropsData {
+  category: CategoryItemProps
+}
+
+export function CategoryItem({ category }: CategoryItemPropsData) {
   return (
     <div className="category-container">
       <div
         className="background-image"
         style={{
-          backgroundImage: `url(${imageUrl})`,
+          backgroundImage: `url(${category.imageUrl})`,
         }}
       />
       {/* <img src="" alt="" /> */}
       <div className="category-body-container">
-        <h2>{title}</h2>
+        <h2>{category.title}</h2>
         <p>Shop now</p>
       </div>
     </div>
