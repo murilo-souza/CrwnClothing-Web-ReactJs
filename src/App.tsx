@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import { Home } from './routes/Home'
 import { DefaultLayout } from './layout/DefaultLayout'
-import { SignIn } from './routes/SignIn'
+import { Authentication } from './routes/Authentication'
 import { Shop } from './routes/Shop'
 
 export function App() {
@@ -10,7 +10,7 @@ export function App() {
       <Route path="/" element={<DefaultLayout />}>
         <Route index element={<Home />} />
         <Route path="shop" element={<Shop />} />
-        <Route path="sign-in" element={<SignIn />} />
+        <Route path="auth" element={<Authentication />} />
       </Route>
     </Routes>
   )

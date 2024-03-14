@@ -10,7 +10,7 @@ export function Header() {
       </Link>
       <div className="nav-links-container">
         <Link to="/shop">SHOP</Link>
-        <Link to="/sign-in">SIGN IN</Link>
+        <Link to="/auth">SIGN IN</Link>
       </div>
     </header>
   )

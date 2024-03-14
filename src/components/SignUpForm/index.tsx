@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { Input } from './Input'
+import { Input } from '../Input'
 import {
   createUserAuthWithEmailAndPassword,
   createUserAuthDocumentFromAuth,
