@@ -1,10 +1,13 @@
+import { ProductsContextProvider } from './context/productsContext'
 import { UserContextProvider } from './context/userContext'
 import { Router } from './Router'
 
 export function App() {
   return (
     <UserContextProvider>
-      <Router />
+      <ProductsContextProvider>
+        <Router />
+      </ProductsContextProvider>
     </UserContextProvider>
   )
 }
