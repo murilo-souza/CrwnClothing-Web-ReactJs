@@ -1,5 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { User } from 'firebase/auth'
 import {
   ReactNode,
@@ -14,14 +12,14 @@ import {
 } from '../utils/firebase/firebase'
 
 interface UserContextData {
-  user: User
-  setUser: (user: User) => void
+  user: User | null
+  setUser: (user: User | null) => void
 }
 
 export const UserContext = createContext<UserContextData>({} as UserContextData)
 
 export function UserContextProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User>({} as User)
+  const [user, setUser] = useState<User | null>({} as User)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
