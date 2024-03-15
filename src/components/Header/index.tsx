@@ -3,9 +3,13 @@ import CrwnLogo from '../../assets/crown.svg'
 import './styles.scss'
 import { useUser } from '../../context/userContext'
 import { signOutUser } from '../../utils/firebase/firebase'
+import { CartIcon } from '../CartIcon'
+import { CartDropdown } from '../CartDropdown'
+import { useCart } from '../../context/cartContext'
 
 export function Header() {
   const { user } = useUser()
+  const { isCartOpen } = useCart()
 
   return (
     <header className="navigation">
@@ -20,7 +24,9 @@ export function Header() {
         ) : (
           <Link to="/auth">SIGN IN</Link>
         )}
+        <CartIcon />
       </div>
+      {isCartOpen && <CartDropdown />}
     </header>
   )
 }
