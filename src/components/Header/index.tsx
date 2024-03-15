@@ -5,13 +5,7 @@ import { useUser } from '../../context/userContext'
 import { signOutUser } from '../../utils/firebase/firebase'
 
 export function Header() {
-  const { user, setUser } = useUser()
-
-  async function signOutHandler() {
-    const response = await signOutUser()
-    console.log(response)
-    setUser(null)
-  }
+  const { user } = useUser()
 
   return (
     <header className="navigation">
@@ -22,7 +16,7 @@ export function Header() {
         <Link to="/shop">SHOP</Link>
 
         {user ? (
-          <span onClick={signOutHandler}>SIGN OUT</span>
+          <span onClick={signOutUser}>SIGN OUT</span>
         ) : (
           <Link to="/auth">SIGN IN</Link>
         )}

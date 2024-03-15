@@ -34,7 +34,7 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 
 export const db = getFirestore()
 
-export async function createUserAuthDocumentFromAuth(
+export async function createUserAuthDocument(
   userAuth: User,
   additionalInfo = {},
 ) {
@@ -54,7 +54,8 @@ export async function createUserAuthDocumentFromAuth(
         createdAt,
         ...additionalInfo,
       })
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       console.log('error creating the user', error.message)
     }
   }

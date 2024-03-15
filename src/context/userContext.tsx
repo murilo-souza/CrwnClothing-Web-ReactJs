@@ -1,14 +1,38 @@
-import { ReactNode, createContext, useContext, useState } from 'react'
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { User } from 'firebase/auth'
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
+import {
+  createUserAuthDocument,
+  onAuthStateChangedListener,
+} from '../utils/firebase/firebase'
 
 interface UserContextData {
-  user: any | null
-  setUser: (user: any) => void
+  user: User
+  setUser: (user: User) => void
 }
 
 export const UserContext = createContext<UserContextData>({} as UserContextData)
 
 export function UserContextProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User>({} as User)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        createUserAuthDocument(user)
+      }
+      setUser(user)
+    })
+
+    return unsubscribe
+  }, [])
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

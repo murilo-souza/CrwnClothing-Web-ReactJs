@@ -1,12 +1,13 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FormEvent, useState } from 'react'
 import { Input } from '../Input'
 import {
   createUserAuthWithEmailAndPassword,
-  createUserAuthDocumentFromAuth,
+  createUserAuthDocument,
 } from '../../utils/firebase/firebase'
 import './styles.scss'
 import { Button } from '../Button'
-import { useUser } from '../../context/userContext'
 
 interface SignUpFormProps {
   displayName: string
@@ -23,13 +24,11 @@ const defaultFormFields: SignUpFormProps = {
 }
 
 export function SignUpForm() {
-  const { setUser } = useUser()
-
   const [formFields, setFormFields] =
     useState<SignUpFormProps>(defaultFormFields)
   const { displayName, email, password, confirmPassword } = formFields
 
-  function handleChange(event) {
+  function handleChange(event: { target: { name: any; value: any } }) {
     const { name, value } = event.target
 
     setFormFields({
@@ -49,9 +48,7 @@ export function SignUpForm() {
     try {
       const { user } = await createUserAuthWithEmailAndPassword(email, password)
 
-      setUser(user)
-
-      await createUserAuthDocumentFromAuth(user, {
+      await createUserAuthDocument(user, {
         displayName,
       })
 

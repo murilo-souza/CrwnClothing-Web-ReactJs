@@ -1,14 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import './styles.scss'
 
 import { FormEvent, useState } from 'react'
 import { Input } from '../Input'
 import { Button } from '../Button'
 import {
-  createUserAuthDocumentFromAuth,
   signInUserAuthWithEmailAndPassword,
   signInWithGooglePopup,
 } from '../../utils/firebase/firebase'
-import { useUser } from '../../context/userContext'
 
 interface SignUpFormProps {
   email: string
@@ -21,13 +20,11 @@ const defaultFormFields: SignUpFormProps = {
 }
 
 export function SignInForm() {
-  const { setUser } = useUser()
-
   const [formFields, setFormFields] =
     useState<SignUpFormProps>(defaultFormFields)
   const { email, password } = formFields
 
-  function handleChange(event) {
+  function handleChange(event: { target: { name: any; value: any } }) {
     const { name, value } = event.target
 
     setFormFields({
@@ -40,8 +37,7 @@ export function SignInForm() {
     event.preventDefault()
 
     try {
-      const { user } = await signInUserAuthWithEmailAndPassword(email, password)
-      setUser(user)
+      await signInUserAuthWithEmailAndPassword(email, password)
 
       setFormFields(defaultFormFields)
     } catch (error: any) {
@@ -61,8 +57,7 @@ export function SignInForm() {
   }
 
   async function handleGoogleSignIn() {
-    const { user } = await signInWithGooglePopup()
-    await createUserAuthDocumentFromAuth(user)
+    await signInWithGooglePopup()
   }
 
   return (
