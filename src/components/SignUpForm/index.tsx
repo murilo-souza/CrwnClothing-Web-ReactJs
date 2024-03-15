@@ -6,6 +6,7 @@ import {
 } from '../../utils/firebase/firebase'
 import './styles.scss'
 import { Button } from '../Button'
+import { useUser } from '../../context/userContext'
 
 interface SignUpFormProps {
   displayName: string
@@ -22,6 +23,8 @@ const defaultFormFields: SignUpFormProps = {
 }
 
 export function SignUpForm() {
+  const { setUser } = useUser()
+
   const [formFields, setFormFields] =
     useState<SignUpFormProps>(defaultFormFields)
   const { displayName, email, password, confirmPassword } = formFields
@@ -45,6 +48,8 @@ export function SignUpForm() {
 
     try {
       const { user } = await createUserAuthWithEmailAndPassword(email, password)
+
+      setUser(user)
 
       await createUserAuthDocumentFromAuth(user, {
         displayName,

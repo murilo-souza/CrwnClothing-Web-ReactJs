@@ -8,6 +8,7 @@ import {
   signInUserAuthWithEmailAndPassword,
   signInWithGooglePopup,
 } from '../../utils/firebase/firebase'
+import { useUser } from '../../context/userContext'
 
 interface SignUpFormProps {
   email: string
@@ -20,6 +21,8 @@ const defaultFormFields: SignUpFormProps = {
 }
 
 export function SignInForm() {
+  const { setUser } = useUser()
+
   const [formFields, setFormFields] =
     useState<SignUpFormProps>(defaultFormFields)
   const { email, password } = formFields
@@ -37,8 +40,9 @@ export function SignInForm() {
     event.preventDefault()
 
     try {
-      const response = await signInUserAuthWithEmailAndPassword(email, password)
-      console.log(response)
+      const { user } = await signInUserAuthWithEmailAndPassword(email, password)
+      setUser(user)
+
       setFormFields(defaultFormFields)
     } catch (error: any) {
       switch (error.code) {
