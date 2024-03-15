@@ -1,27 +1,29 @@
 import './styles.scss'
 
 import { Button } from '../Button'
-
-interface ProductCardProps {
-  id: number
-  name: string
-  price: number
-  imageUrl: string
-}
+import { ProductProps, useCart } from '../../context/cartContext'
 
 interface ProductCardData {
-  product: ProductCardProps
+  product: ProductProps
 }
 
 export function ProductCard({ product }: ProductCardData) {
+  const { addItemToCart } = useCart()
+
+  function addProductToCart() {
+    addItemToCart(product)
+  }
+
   return (
     <div className="product-card-container">
       <img src={product.imageUrl} alt={product.name} />
       <div className="footer">
         <span className="name">{product.name}</span>
-        <span className="price">{product.price}</span>
+        <span className="price">${product.price}</span>
       </div>
-      <Button buttonType="inverted">Add to cart</Button>
+      <Button buttonType="inverted" onClick={addProductToCart}>
+        Add to cart
+      </Button>
     </div>
   )
 }
