@@ -11,7 +11,14 @@ import {
   NextOrObserver,
 } from 'firebase/auth'
 
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+} from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB9pebrQbKHAkT5Yu3YYXDVwJZT4cpW7xc',
@@ -33,6 +40,15 @@ export const auth = getAuth()
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 
 export const db = getFirestore()
+
+export const addCollectionAndDocuments = async (
+  collectionKey: string,
+  objectsToAdd: any,
+) => {
+  const collectionRef = collection(db, collectionKey)
+  const batch = writeBatch(db)
+  
+}
 
 export async function createUserAuthDocument(
   userAuth: User,

@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { ReactNode, createContext, useContext, useState } from 'react'
 
-import Products from '../shop-data.json'
+import SHOP_DATA from '../shop-data'
 
 interface ProductsContextData {
   products: typeof Products
@@ -12,7 +12,7 @@ export const ProductsContext = createContext<ProductsContextData>(
 )
 
 export function ProductsContextProvider({ children }: { children: ReactNode }) {
-  const [products, setProducts] = useState(Products)
+  const [products, setProducts] = useState([])
 
   return (
     <ProductsContext.Provider value={{ products }}>
