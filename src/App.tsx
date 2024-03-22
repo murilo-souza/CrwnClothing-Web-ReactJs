@@ -1,16 +1,16 @@
 import { CartContextProvider } from './context/cartContext'
-import { ProductsContextProvider } from './context/productsContext'
+import { CategoriesContextProvider } from './context/categoriesContext'
 import { UserContextProvider } from './context/userContext'
 import { Router } from './Router'
 
 export function App() {
   return (
     <UserContextProvider>
-      <ProductsContextProvider>
+      <CategoriesContextProvider>
         <CartContextProvider>
           <Router />
         </CartContextProvider>
-      </ProductsContextProvider>
+      </CategoriesContextProvider>
     </UserContextProvider>
   )
 }

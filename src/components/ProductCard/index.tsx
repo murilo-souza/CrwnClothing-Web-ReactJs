@@ -1,10 +1,15 @@
 import './styles.scss'
 
 import { Button } from '../Button'
-import { ProductProps, useCart } from '../../context/cartContext'
+import { useCart } from '../../context/cartContext'
 
 interface ProductCardData {
-  product: ProductProps
+  product: {
+    id: number
+    name: string
+    imageUrl: string
+    price: number
+  }
 }
 
 export function ProductCard({ product }: ProductCardData) {

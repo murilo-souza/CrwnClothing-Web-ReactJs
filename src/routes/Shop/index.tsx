@@ -1,16 +1,17 @@
 import './styles.scss'
 
-import { ProductCard } from '../../components/ProductCard'
-import { useProducts } from '../../context/productsContext'
+import { useCategories } from '../../context/categoriesContext'
+import { CategoryPreview } from '../../components/CategoryPreview'
 
 export function Shop() {
-  const { products } = useProducts()
+  const { categories } = useCategories()
 
   return (
-    <div className="products-container">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className="shop-container">
+      {Object.keys(categories).map((title) => {
+        const category = categories[title]
+        return <CategoryPreview key={title} title={title} products={category} />
+      })}
     </div>
   )
 }
