@@ -1,17 +1,13 @@
+import { CategoriesPreview } from '../CategoriesPreview'
+import { Category } from '../Category'
 import './styles.scss'
-
-import { useCategories } from '../../context/categoriesContext'
-import { CategoryPreview } from '../../components/CategoryPreview'
+import { Route, Routes } from 'react-router-dom'
 
 export function Shop() {
-  const { categories } = useCategories()
-
   return (
-    <div className="shop-container">
-      {Object.keys(categories).map((title) => {
-        const category = categories[title]
-        return <CategoryPreview key={title} title={title} products={category} />
-      })}
-    </div>
+    <Routes>
+      <Route index element={<CategoriesPreview />} />
+      <Route path=":category" element={<Category />} />
+    </Routes>
   )
 }
