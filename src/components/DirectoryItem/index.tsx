@@ -1,18 +1,18 @@
 import './styles.scss'
 
-export interface CategoryItemProps {
+export interface DirectoryItemProps {
   id: number
   title: string
   imageUrl: string
 }
 
-interface CategoryItemPropsData {
-  category: CategoryItemProps
+interface DirectoryItemPropsData {
+  category: DirectoryItemProps
 }
 
-export function CategoryItem({ category }: CategoryItemPropsData) {
+export function DirectoryItem({ category }: DirectoryItemPropsData) {
   return (
-    <div className="category-container">
+    <div className="directory-item-container">
       <div
         className="background-image"
         style={{
@@ -20,7 +20,7 @@ export function CategoryItem({ category }: CategoryItemPropsData) {
         }}
       />
       {/* <img src="" alt="" /> */}
-      <div className="category-body-container">
+      <div className="directory-item-body-container">
         <h2>{category.title}</h2>
         <p>Shop now</p>
       </div>

@@ -1,15 +1,15 @@
-import { CategoryItem, CategoryItemProps } from '../CategoryItem'
+import { DirectoryItem, DirectoryItemProps } from '../DirectoryItem'
 import './styles.scss'
 
 interface DirectoryProps {
-  categories: CategoryItemProps[]
+  categories: DirectoryItemProps[]
 }
 
 export function Directory({ categories }: DirectoryProps) {
   return (
     <div className="directory-container">
       {categories.map((category) => (
-        <CategoryItem key={category.id} category={category} />
+        <DirectoryItem key={category.id} category={category} />
       ))}
     </div>
   )

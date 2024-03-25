@@ -14,7 +14,7 @@ export function Category() {
   }, [category, categories])
 
   return (
-    <div className="category-container-r">
+    <div className="category-container">
       {products &&
         products.map((product) => (
           <ProductCard key={product.id} product={product} />
